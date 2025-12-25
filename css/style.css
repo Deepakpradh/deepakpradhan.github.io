@@ -2122,3 +2122,24 @@ p {
     white-space: nowrap;
     margin-bottom: 5px;
 }
+
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.btn-loading {
+    animation: pulse 1.5s infinite;
+    pointer-events: none;
+}
+
+.btn-loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

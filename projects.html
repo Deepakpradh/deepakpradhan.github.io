@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="script.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Research projects by Deepak Pradhan - Computational Physics, Active Matter Simulations, and Quantum Computing">
+    
+    <title>Research Projects | Deepak Pradhan | Computational Physics Researcher</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Your Premium CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <style>
+        /* Projects page specific styles */
+        .project-timeline {
+            position: relative;
+            padding: 2rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .project-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-500), var(--accent-teal));
+        }
+        
+        .project-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .project-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 3px solid var(--primary-500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            z-index: 1;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .project-marker i {
+            color: var(--primary-500);
+            font-size: 1.5rem;
+        }
+        
+        .project-content {
+            flex: 1;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tag-lammps {
+            background: linear-gradient(135deg, #ff6b6b, #ffa8a8);
+            color: white;
+        }
+        
+        .tag-quantum {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+        
+        .tag-simulation {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+        }
+        
+        .tag-research {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            color: white;
+        }
+        
+        .project-guide {
+            background: var(--neutral-50);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-500);
+        }
+        
+        .guide-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .guide-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .guide-icon i {
+            color: var(--primary-500);
+        }
+        
+        .project-technologies {
+            margin: 1.5rem 0;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--neutral-100);
+            border-radius: var(--radius-xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .tech-item i {
+            color: var(--primary-500);
+        }
+        
+        .project-outcomes {
+            background: linear-gradient(135deg, var(--primary-50), var(--white));
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin: 1.5rem 0;
+        }
+        
+        .outcome-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .outcome-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .outcome-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-500);
+            font-weight: bold;
+        }
+        
+        .github-repo {
+            background: linear-gradient(135deg, #24292e, #0d1117);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+        }
+        
+        .repo-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .repo-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .repo-stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', monospace;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .simulation-visualization {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .simulation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .simulation-item {
+            text-align: center;
+        }
+        
+        .simulation-preview {
+            height: 200px;
+            background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .simulation-preview i {
+            font-size: 4rem;
+            color: var(--primary-500);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .project-timeline::before {
+                left: 25px;
+            }
+            
+            .project-marker {
+                width: 50px;
+                height: 50px;
+                margin-right: 1.5rem;
+            }
+            
+            .project-marker i {
+                font-size: 1.25rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .github-repo {
+                padding: 2rem 1rem;
+            }
+            
+            .repo-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="text-gradient">Deepak Pradhan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+                <li><a href="animations.html" class="nav-link">Animations</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Projects Hero Section -->
+    <section class="hero projects-hero">
+        <div class="hero-content" data-scroll>
+            <span class="hero-tagline">
+                <i class="fas fa-flask"></i> Computational Physics Research
+            </span>
+            <h1>Research & <span class="text-gradient">Projects</span></h1>
+            <p class="hero-subtitle">
+                From <strong>Active Matter Simulations</strong> at IIT Madras to <strong>Quantum Computing</strong> explorations— 
+                bridging theoretical physics with computational methods.
+            </p>
+            <div class="hero-buttons">
+                <a href="#academic-research" class="btn btn-primary">
+                    <i class="fas fa-graduation-cap"></i> Academic Research
+                </a>
+                <a href="#github-repos" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> Code Repositories
+                </a>
+            </div>
+        </div>
+        
+        <!-- Animated science elements -->
+        <div class="science-elements">
+            <div class="element molecule"></div>
+            <div class="element circuit"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- Academic Research Timeline -->
+        <section class="section" id="academic-research">
+            <div class="section-title" data-scroll>
+                <h2>Academic <span class="text-gradient">Research</span></h2>
+                <p>From undergraduate explorations to graduate-level computational physics</p>
+            </div>
+            
+            <div class="project-timeline">
+                <!-- IIT Madras Project -->
+                <div class="project-item" data-scroll>
+                    <div class="project-marker">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Active Matter Simulation</h3>
+                            <div class="project-tags">
+                                <span class="project-tag tag-lammps">LAMMPS</span>
+                                <span class="project-tag tag-simulation">MD Simulation</span>
+                                <span class="project-tag tag-research">M.Sc. Project</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-period">
+                            <span class="period-badge">
+                                <i class="fas fa-calendar"></i> 2023-2024 | IIT Madras
+                            </span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>
+                                <strong>Topic:</strong> Collective motion of cells modeled as ring polymers in active matter systems.
+                                This research explores how individual cellular components interact to produce emergent collective behavior.
+                            </p>
+                        </div>
+                        
+                        <div class="project-guide">
+                            <div class="guide-info">
+                                <div class="guide-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <p><strong>Research Guide:</strong> Prof. P.B. Sunilkumar</p>
+                                    <p><em>Department of Physics, IIT Madras</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-technologies">
+                            <h4><i class="fas fa-tools"></i> Technologies & Tools Used:</h4>
+                            <div class="tech-stack">
+                                <div class="tech-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>LAMMPS</span>
+                                </div>
+                                <div class="tech-item">
+                                    <i class="fab fa-python"></i>
+                                    <span>Python</span>
+                                </div>
+                                <div class="tech-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Data Analysis</span>
+                                </div>
+                                <div class="tech-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Molecular Dynamics</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcomes">
+                            <h4><i class="fas fa-bullseye"></i> Key Outcomes:</h4>
+                            <ul class="outcome-list">
+                                <li>Developed computational models for ring polymer dynamics in active environments</li>
+                                <li>Implemented custom modifications to LAMMPS for specific interaction potentials</li>
+                                <li>Analyzed collective motion patterns and phase transitions in active matter</li>
+                                <li>Generated visualizations of polymer chain dynamics and aggregation behavior</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-insights">
+                            <h4><i class="fas fa-lightbulb"></i> Research Insights:</h4>
+                            <p>
+                                This project demonstrated how simple interaction rules at the microscopic level can lead to 
+                                complex collective behavior, providing insights into biological processes like tissue formation 
+                                and bacterial colony dynamics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- B.Sc. Project -->
+                <div class="project-item" data-scroll>
+                    <div class="project-marker">
+                        <i class="fas fa-quantum-computer"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Quantum Computing Foundations</h3>
+                            <div class="project-tags">
+                                <span class="project-tag tag-quantum">Quantum</span>
+                                <span class="project-tag tag-research">B.Sc. Project</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-period">
+                            <span class="period-badge">
+                                <i class="fas fa-calendar"></i> 2021-2022 | BJB College
+                            </span>
+                        </div>
+                        
+                        <div class="project-description">
+                            <p>
+                                <strong>Topic:</strong> Introduction to Quantum Computing principles and algorithms. 
+                                This project explored the fundamental differences between classical and quantum computation, 
+                                focusing on quantum gates, superposition, and entanglement.
+                            </p>
+                        </div>
+                        
+                        <div class="project-guide">
+                            <div class="guide-info">
+                                <div class="guide-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <p><strong>Research Guide:</strong> Prof. Rajmohan Mohanty</p>
+                                    <p><em>Department of Physics, BJB Autonomous College</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-technologies">
+                            <h4><i class="fas fa-tools"></i> Technologies & Concepts:</h4>
+                            <div class="tech-stack">
+                                <div class="tech-item">
+                                    <i class="fas fa-brain"></i>
+                                    <span>Quantum Algorithms</span>
+                                </div>
+                                <div class="tech-item">
+                                    <i class="fas fa-project-diagram"></i>
+                                    <span>Circuit Models</span>
+                                </div>
+                                <div class="fab fa-python"></i>
+                                    <span>Qiskit</span>
+                                </div>
+                                <div class="tech-item">
+                                    <i class="fas fa-calculator"></i>
+                                    <span>Linear Algebra</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcomes">
+                            <h4><i class="fas fa-bullseye"></i> Key Outcomes:</h4>
+                            <ul class="outcome-list">
+                                <li>Understanding of quantum superposition and entanglement principles</li>
+                                <li>Implementation of basic quantum algorithms (Deutsch-Jozsa, Grover's)</li>
+                                <li>Analysis of quantum computational advantages over classical approaches</li>
+                                <li>Exploration of quantum error correction and decoherence challenges</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-insights">
+                            <h4><i class="fas fa-lightbulb"></i> Research Insights:</h4>
+                            <p>
+                                This foundational project highlighted the paradigm shift quantum computing represents, 
+                                emphasizing how quantum mechanical principles could revolutionize computational problem-solving 
+                                in fields from cryptography to material science.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulation Visualization -->
+        <section class="simulation-visualization" data-scroll>
+            <div class="section-title">
+                <h2>Simulation <span class="text-gradient">Visualizations</span></h2>
+                <p>Bringing computational results to life through visualization</p>
+            </div>
+            
+            <div class="simulation-grid">
+                <div class="simulation-item">
+                    <div class="simulation-preview">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Molecular Dynamics</h3>
+                    <p>Real-time visualization of particle interactions and collective motion patterns.</p>
+                </div>
+                
+                <div class="simulation-item">
+                    <div class="simulation-preview">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>Wavefunction Evolution</h3>
+                    <p>Quantum state visualization showing superposition and interference effects.</p>
+                </div>
+                
+                <div class="simulation-item">
+                    <div class="simulation-preview">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Polymer Networks</h3>
+                    <p>Dynamic visualization of ring polymer chains and their entanglement dynamics.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Repositories -->
+        <section class="section" id="github-repos">
+            <div class="github-repo" data-scroll>
+                <div class="repo-content">
+                    <div class="section-title">
+                        <h2>Code <span class="text-gradient">Repositories</span></h2>
+                        <p>Open-source contributions and research code</p>
+                    </div>
+                    
+                    <div class="repo-icon">
+                        <i class="fab fa-github fa-4x"></i>
+                    </div>
+                    
+                    <p class="repo-description">
+                        Explore my simulation codes, LAMMPS modifications, and animation scripts. 
+                        All repositories are documented with installation guides and usage examples.
+                    </p>
+                    
+                    <div class="repo-stats">
+                        <div class="repo-stat">
+                            <div class="stat-number">LAMMPS</div>
+                            <div class="stat-label">Modifications</div>
+                        </div>
+                        
+                        <div class="repo-stat">
+                            <div class="stat-number">Python</div>
+                            <div class="stat-label">Simulations</div>
+                        </div>
+                        
+                        <div class="repo-stat">
+                            <div class="stat-number">Manim</div>
+                            <div class="stat-label">Animations</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/Deepakpradh/Lammps_modification" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github"></i> View LAMMPS Projects
+                    </a>
+                    
+                    <div class="repo-features">
+                        <div class="feature">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Well-documented code with examples</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-book"></i>
+                            <span>Detailed README files</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-comment"></i>
+                            <span>Open to collaborations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Methodology -->
+        <section class="section" id="methodology">
+            <div class="section-title" data-scroll>
+                <h2>Research <span class="text-gradient">Methodology</span></h2>
+                <p>Systematic approach to computational physics research</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="method-card card" data-scroll>
+                    <div class="method-icon">
+                        <i class="fas fa-cogs fa-2x"></i>
+                    </div>
+                    <h3>Model Development</h3>
+                    <p>
+                        Starting from physical principles to develop mathematically precise 
+                        models that capture essential system behavior while remaining computationally tractable.
+                    </p>
+                </div>
+                
+                <div class="method-card card" data-scroll>
+                    <div class="method-icon">
+                        <i class="fas fa-laptop-code fa-2x"></i>
+                    </div>
+                    <h3>Simulation Implementation</h3>
+                    <p>
+                        Translating mathematical models into efficient code using appropriate 
+                        computational tools (LAMMPS, Python) with careful attention to numerical stability.
+                    </p>
+                </div>
+                
+                <div class="method-card card" data-scroll>
+                    <div class="method-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <h3>Analysis & Visualization</h3>
+                    <p>
+                        Extracting meaningful insights from simulation data through statistical 
+                        analysis and creating intuitive visualizations that reveal underlying patterns.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Research Directions -->
+        <section class="section" id="future-research">
+            <div class="future-research-card card" data-scroll>
+                <div class="section-title">
+                    <h2>Future <span class="text-gradient">Research</span> Directions</h2>
+                </div>
+                
+                <div class="research-directions">
+                    <div class="direction">
+                        <h3><i class="fas fa-microscope"></i> Advanced Active Matter</h3>
+                        <p>
+                            Exploring more complex active matter systems with multiple components 
+                            and external fields, investigating pattern formation and self-organization.
+                        </p>
+                    </div>
+                    
+                    <div class="direction">
+                        <h3><i class="fas fa-brain"></i> Machine Learning in Physics</h3>
+                        <p>
+                            Integrating machine learning techniques with traditional simulation 
+                            methods to accelerate discovery and predict material properties.
+                        </p>
+                    </div>
+                    
+                    <div class="direction">
+                        <h3><i class="fas fa-graduation-cap"></i> Educational Tools</h3>
+                        <p>
+                            Developing interactive simulation tools and visualizations to make 
+                            advanced physics concepts more accessible to students and educators.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="collaboration-cta">
+                    <p>
+                        <strong>Interested in collaborating?</strong> I'm always open to discussing 
+                        new research ideas and computational projects at the intersection of 
+                        physics, computation, and education.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-handshake"></i> Discuss Collaboration
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section" id="cta" data-scroll>
+            <div class="cta-card card">
+                <div class="cta-content">
+                    <h2 class="text-gradient">Explore the Code</h2>
+                    <p>
+                        Dive into the implementation details, modify the simulations, 
+                        or use the code for your own research and educational purposes.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="https://github.com/Deepakpradh/Lammps_modification" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-github"></i> Browse GitHub Repositories
+                        </a>
+                        <a href="animations.html" class="btn btn-secondary">
+                            <i class="fas fa-film"></i> View Physics Animations
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="text-gradient">Deepak Pradhan</h3>
+                    <p>Physics Educator & Computational Researcher</p>
+                    <p class="footer-subtitle">
+                        Bridging theoretical physics with computational methods and visual explanations.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Research Areas</h4>
+                    <ul class="footer-links">
+                        <li><a href="#academic-research">Active Matter</a></li>
+                        <li><a href="#academic-research">Molecular Dynamics</a></li>
+                        <li><a href="#academic-research">Quantum Computing</a></li>
+                        <li><a href="#github-repos">Computational Physics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Tools & Technologies</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">LAMMPS</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Mathematica</span>
+                        <span class="tech-tag">Manim</span>
+                        <span class="tech-tag">Qiskit</span>
+                        <span class="tech-tag">Git</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Academic Credentials</h4>
+                    <div class="credentials">
+                        <div class="credential">
+                            <i class="fas fa-university"></i>
+                            <span>M.Sc. Physics, IIT Madras</span>
+                        </div>
+                        <div class="credential">
+                            <i class="fas fa-code"></i>
+                            <span>Computational Physics Research</span>
+                        </div>
+                        <div class="credential">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Physics Educator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    © 2025 Deepak Pradhan. All rights reserved. | 
+                    Computational Physics Researcher | IIT Madras | Allen Career Institute
+                </p>
+                <p class="footer-quote">
+                    <i class="fas fa-quote-left"></i> 
+                    The computer was born to solve problems that did not exist before.
+                    <i class="fas fa-quote-right"></i> — Bill Gates
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Effects -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight * 0.8);
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        // Initial check on page load
+        handleScrollAnimation();
+        window.addEventListener('scroll', handleScrollAnimation);
+
+        // Add active class to current nav link
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else if (currentPage === '' && link.getAttribute('href') === 'index.html') {
+                link.classList.add('active');
+            }
+        });
+
+        // Animated science elements for hero background
+        document.addEventListener('DOMContentLoaded', function() {
+            const scienceElements = document.querySelector('.science-elements');
+            if (scienceElements) {
+                // Create animated molecules and circuits
+                for (let i = 0; i < 10; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'science-particle';
+                    element.style.left = `${Math.random() * 100}%`;
+                    element.style.top = `${Math.random() * 100}%`;
+                    element.style.animationDelay = `${Math.random() * 3}s`;
+                    scienceElements.appendChild(element);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

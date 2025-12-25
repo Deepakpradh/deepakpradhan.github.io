@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Physics animations by Deepak Pradhan - Visual explanations of complex concepts using Manim and computational physics">
+    
+    <title>Physics Animations | Deepak Pradhan | Visual Physics Educator</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Your Premium CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Video Player Enhancement -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.1/video-js.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- External JavaScript -->
+    <script src="script.js" defer></script>
+    
+    <style>
+        /* Custom animations page styles */
+        .video-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            background: var(--neutral-900);
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-overlay:hover .play-button {
+            transform: scale(1);
+        }
+        
+        .animation-category {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--neutral-50), var(--white));
+            border-radius: var(--radius-lg);
+            margin-bottom: 3rem;
+        }
+        
+        .animation-series {
+            counter-reset: animation-counter;
+        }
+        
+        .animation-series-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .animation-series-item::before {
+            counter-increment: animation-counter;
+            content: counter(animation-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .manim-showcase {
+            background: linear-gradient(135deg, #48bb78, #4299e1);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+        }
+        
+        .concept-explanation {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-500);
+            margin: 1.5rem 0;
+        }
+        
+        .physics-equation {
+            font-family: 'Cambria Math', serif;
+            font-size: 1.2rem;
+            background: var(--neutral-50);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin: 1rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="text-gradient">Deepak Pradhan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="teaching.html" class="nav-link">Teaching</a></li>
+                <li><a href="animations.html" class="nav-link active">Animations</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Animations Hero Section -->
+    <section class="hero animations-hero">
+        <div class="hero-content" data-scroll>
+            <span class="hero-tagline">
+                <i class="fas fa-film"></i> Visual Physics Education
+            </span>
+            <h1>Physics <span class="text-gradient">Visualized</span></h1>
+            <p class="hero-subtitle">
+                Where abstract equations transform into intuitive animations. 
+                Using <strong>Manim</strong> (3Blue1Brown's animation engine) to reveal 
+                the hidden beauty in physical laws.
+            </p>
+            <div class="hero-buttons">
+                <a href="#friction-series" class="btn btn-primary">
+                    <i class="fas fa-play-circle"></i> Watch Featured Series
+                </a>
+                <a href="#pursuit-problem" class="btn btn-secondary">
+                    <i class="fas fa-code"></i> View Computational Animations
+                </a>
+            </div>
+        </div>
+        
+        <!-- Animated physics elements in background -->
+        <div class="physics-elements">
+            <div class="particle-wave"></div>
+            <div class="particle-wave"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- Manim Showcase -->
+        <section class="manim-showcase" data-scroll>
+            <div class="grid grid-2">
+                <div>
+                    <h2><i class="fas fa-magic"></i> Created with Manim</h2>
+                    <p>
+                        All animations are programmed using <strong>Manim</strong> - the mathematical 
+                        animation engine created by Grant Sanderson (3Blue1Brown). This allows for 
+                        precise, mathematically accurate visualizations that traditional animation 
+                        software cannot achieve.
+                    </p>
+                    <div class="manim-features">
+                        <div class="feature">
+                            <i class="fas fa-code"></i>
+                            <span>Python-based</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-calculator"></i>
+                            <span>Mathematically precise</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-palette"></i>
+                            <span>Customizable visuals</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="manim-logo">
+                    <div class="logo-container">
+                        <span class="logo-text">Manim</span>
+                        <div class="logo-subtitle">Mathematical Animation Engine</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friction & Dynamics Series -->
+        <section class="section" id="friction-series">
+            <div class="section-title" data-scroll>
+                <h2>Featured Series: <span class="text-gradient">Friction & Dynamics</span></h2>
+                <p>A step-by-step visual breakdown of classical mechanics</p>
+            </div>
+            
+            <div class="concept-explanation" data-scroll>
+                <h3><i class="fas fa-lightbulb"></i> Teaching Approach</h3>
+                <p>
+                    This series demonstrates my pedagogical method: breaking complex problems into 
+                    <strong>visual, sequential steps</strong>. Each animation builds upon the previous, 
+                    allowing students to follow the logical progression from problem statement to 
+                    complete solution.
+                </p>
+                <div class="physics-equation">
+                    F<sub>friction</sub> = μ<sub>k</sub> · N
+                </div>
+            </div>
+            
+            <div class="animation-series">
+                <div class="animation-series-item" data-scroll>
+                    <div class="grid grid-2 gap-3">
+                        <div>
+                            <h3>Complete Friction & Dynamics Analysis</h3>
+                            <p>
+                                A comprehensive walkthrough of a block on an inclined plane with kinetic 
+                                friction, covering everything from initial setup to final dynamic demonstration.
+                            </p>
+                            
+                            <div class="learning-points">
+                                <h4><i class="fas fa-graduation-cap"></i> Part 1: Problem Introduction</h4>
+                                <ul>
+                                    <li>Problem statement visualization</li>
+                                    <li>Parameter definition (m, θ, μ<sub>k</sub>)</li>
+                                    <li>Initial condition setup</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="learning-points">
+                                <h4><i class="fas fa-graduation-cap"></i> Part 2: Force Analysis & Free Body Diagram</h4>
+                                <ul>
+                                    <li>Force vector decomposition</li>
+                                    <li>Free body diagram construction</li>
+                                    <li>Normal force calculation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="learning-points">
+                                <h4><i class="fas fa-graduation-cap"></i> Part 3: The Solution</h4>
+                                <ul>
+                                    <li>Newton's second law application</li>
+                                    <li>Equation solving step-by-step</li>
+                                    <li>Final velocity calculation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="learning-points">
+                                <h4><i class="fas fa-graduation-cap"></i> Part 4: Dynamic Demonstration</h4>
+                                <ul>
+                                    <li>Real-time physics simulation</li>
+                                    <li>Theory-experiment comparison</li>
+                                    <li>Kinematic visualization</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="video-card">
+                            <!-- Use a placeholder video -->
+                            <video id="frictionCompleteVideo" class="video-js" controls preload="metadata" 
+                                   poster="https://via.placeholder.com/800x450/667eea/ffffff?text=Friction+Analysis+Video"
+                                   data-setup='{"fluid": true}'>
+                                <!-- First try local video -->
+                                <source src="videos/friction.mp4" type="video/mp4">
+                                <!-- Fallback to placeholder video -->
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">
+                                    supports HTML5 video</a>
+                                </p>
+                            </video>
+                            <div class="video-overlay" onclick="playVideo('frictionCompleteVideo')">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="video-chapters">
+                                <div class="chapter-marker" data-time="0:00" title="Part 1: Problem Introduction">Intro</div>
+                                <div class="chapter-marker" data-time="2:30" title="Part 2: Force Analysis">Forces</div>
+                                <div class="chapter-marker" data-time="5:15" title="Part 3: Solution">Solution</div>
+                                <div class="chapter-marker" data-time="8:45" title="Part 4: Demonstration">Demo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pursuit Problem Series -->
+        <section class="section" id="pursuit-problem">
+            <div class="section-title" data-scroll>
+                <h2>Computational Mathematics: <span class="text-gradient">The Pursuit Problem</span></h2>
+                <p>Where mathematics meets beautiful geometric patterns</p>
+            </div>
+            
+            <div class="concept-explanation" data-scroll>
+                <h3><i class="fas fa-infinity"></i> The N-Bugs Problem</h3>
+                <p>
+                    In this classic mathematical puzzle, <em>n</em> entities (snails/bugs) start at the vertices 
+                    of a regular polygon. Each moves at constant speed toward its clockwise neighbor, 
+                    creating beautiful logarithmic spirals and demonstrating differential equations in action.
+                </p>
+                <div class="physics-equation">
+                    dr/dt = v(cos θ - 1), &nbsp; r dθ/dt = v sin θ
+                </div>
+            </div>
+            
+            <div class="grid grid-3 gap-3">
+                <!-- 3 Snails -->
+                <div class="card" data-scroll>
+                    <div class="video-card">
+                        <video id="video5" class="video-js" controls preload="metadata"
+                               poster="assets/videos_thumbnails/pursuit.png"
+                               data-setup='{"fluid": true}'>
+                            <source src="videos/ThreeSnailsChasingWithTriangle.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay" onclick="playVideo('video5')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>3 Snails (Triangle)</h3>
+                        <p>
+                            Three snails starting at triangle vertices. The pursuit creates 
+                            equiangular spirals converging at the centroid.
+                        </p>
+                        <div class="animation-stats">
+                            <div class="stat">
+                                <i class="fas fa-shapes"></i>
+                                <span>Regular Triangle</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>Equal distances</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4 Snails -->
+                <div class="card" data-scroll>
+                    <div class="video-card">
+                        <video id="video6" class="video-js" controls preload="metadata"
+                               poster="assets/videos_thumbnails/triangle.png"
+                               data-setup='{"fluid": true}'>
+                            <source src="videos/FourSnailsChasingSquare.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay" onclick="playVideo('video6')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>4 Snails (Square)</h3>
+                        <p>
+                            Four snails starting at square vertices. Demonstrates how initial 
+                            geometry affects the pursuit trajectory.
+                        </p>
+                        <div class="animation-stats">
+                            <div class="stat">
+                                <i class="fas fa-square"></i>
+                                <span>Square formation</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-wave-square"></i>
+                                <span>Spiral convergence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pursuit Dynamics -->
+                <div class="card" data-scroll>
+                    <div class="video-card">
+                        <video id="video7" class="video-js" controls preload="metadata"
+                               poster="assets/videos_thumbnails/pursuit.png"
+                               data-setup='{"fluid": true}'>
+                            <source src="videos/PursuitCatches.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay" onclick="playVideo('video7')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Pursuit Dynamics</h3>
+                        <p>
+                            Detailed analysis showing velocity vectors and the changing 
+                            distance between pursuing entities.
+                        </p>
+                        <div class="animation-stats">
+                            <div class="stat">
+                                <i class="fas fa-bolt"></i>
+                                <span>Velocity vectors</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Distance analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chaos Theory -->
+        <section class="section" id="chaos-theory">
+            <div class="section-title" data-scroll>
+                <h2>Complex Systems: <span class="text-gradient">Chaos Theory</span></h2>
+                <p>Deterministic equations, unpredictable outcomes</p>
+            </div>
+            
+            <div class="grid grid-2 gap-3">
+                <div data-scroll>
+                    <div class="concept-explanation">
+                        <h3><i class="fas fa-butterfly"></i> The Lorenz Attractor</h3>
+                        <p>
+                            A system of three ordinary differential equations that exhibits chaotic 
+                            behavior. Known for the "butterfly effect" - where small differences in 
+                            initial conditions yield vastly different outcomes.
+                        </p>
+                        <div class="physics-equation">
+                            dx/dt = σ(y - x), &nbsp; dy/dt = x(ρ - z) - y, &nbsp; dz/dt = xy - βz
+                        </div>
+                        <p>
+                            This animation visualizes the strange attractor in phase space, 
+                            demonstrating how deterministic equations can produce complex, 
+                            non-repeating patterns.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card" data-scroll>
+                    <div class="video-card">
+                        <video id="video8" class="video-js" controls preload="metadata"
+                               poster="assets/videos_thumbnails/lorenz.png"
+                               data-setup='{"fluid": true}'>
+                            <source src="videos/LorenzAttractor.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay" onclick="playVideo('video8')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lorenz Attractor Visualization</h3>
+                        <div class="chaos-parameters">
+                            <div class="parameter">
+                                <span class="param-label">σ (Prandtl):</span>
+                                <span class="param-value">10</span>
+                            </div>
+                            <div class="parameter">
+                                <span class="param-label">ρ (Rayleigh):</span>
+                                <span class="param-value">28</span>
+                            </div>
+                            <div class="parameter">
+                                <span class="param-label">β (Dimension):</span>
+                                <span class="param-value">8/3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compilation -->
+        <section class="section" id="compilation">
+            <div class="section-title" data-scroll>
+                <h2>Animation <span class="text-gradient">Compilation</span></h2>
+                <p>A showcase of various physics visualizations</p>
+            </div>
+            
+            <div class="card" data-scroll>
+                <div class="video-card">
+                    <video id="video9" class="video-js vjs-big-play-centered" controls preload="metadata"
+                           poster="assets/videos_thumbnails/pursuit.png"
+                           data-setup='{"fluid": true, "playbackRates": [0.5, 1, 1.5, 2]}'>
+                        <source src="videos/RunAll.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay" onclick="playVideo('video9')">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Complete Animation Showcase</h3>
+                    <p>
+                        A compilation featuring multiple physics animations, demonstrating 
+                        the range of visual explanations from classical mechanics to modern physics.
+                    </p>
+                    <div class="compilation-stats">
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span>Duration: 5+ minutes</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-video"></i>
+                            <span>10+ animations</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Multiple physics topics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animation Request Section -->
+        <section class="section" id="request-animation">
+            <div class="cta-card card" data-scroll>
+                <div class="cta-content">
+                    <h2 class="text-gradient">Request a Physics Animation</h2>
+                    <p>
+                        Have a complex physics concept that needs visual explanation? 
+                        I create custom animations to help students, educators, and 
+                        researchers visualize challenging topics.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fas fa-lightbulb"></i> Request Animation
+                        </a>
+                        <a href="teaching.html" class="btn btn-secondary">
+                            <i class="fas fa-chalkboard-teacher"></i> View Teaching Methods
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="text-gradient">Deepak Pradhan</h3>
+                    <p>Physics Educator & Visual Explainer</p>
+                    <p class="footer-subtitle">
+                        Transforming equations into visual understanding through animation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Animation Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#friction-series">Classical Mechanics</a></li>
+                        <li><a href="#pursuit-problem">Computational Math</a></li>
+                        <li><a href="#chaos-theory">Chaos Theory</a></li>
+                        <li><a href="#compilation">Animation Showcase</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Tools & Technologies</h4>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Manim</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Mathematica</span>
+                        <span class="tech-tag">FFmpeg</span>
+                        <span class="tech-tag">LaTeX</span>
+                        <span class="tech-tag">Adobe Premiere</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Educational Value</h4>
+                    <div class="value-points">
+                        <div class="value-point">
+                            <i class="fas fa-eye"></i>
+                            <span>Visual Learning Enhancement</span>
+                        </div>
+                        <div class="value-point">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span>Conceptual Clarity</span>
+                        </div>
+                        <div class="value-point">
+                            <i class="fas fa-brain"></i>
+                            <span>Cognitive Engagement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    © 2025 Deepak Pradhan. All rights reserved. | 
+                    Physics Animations Created with Manim | IIT Madras
+                </p>
+                <p class="footer-quote">
+                    <i class="fas fa-quote-left"></i> 
+                    A picture is worth a thousand words, but an animation is worth a thousand equations.
+                    <i class="fas fa-quote-right"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.21.1/video.min.js"></script>
+</body>
+</html>

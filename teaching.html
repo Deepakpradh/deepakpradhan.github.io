@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="script.js" defer></script>    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deepak Pradhan's teaching methodology - Transforming Physics education through visual intuition and conceptual clarity">
+    
+    <title>Teaching Methodology | Deepak Pradhan | Physics Educator</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Your Premium CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <style>
+        /* Custom teaching page styles */
+        .pedagogy-diagram {
+            background: linear-gradient(135deg, var(--primary-50), var(--white));
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagram-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+        
+        .flow-step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+        
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .flow-step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .teaching-resource {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--neutral-200);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .teaching-resource:hover {
+            border-color: var(--primary-300);
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+        
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-100), var(--accent-teal));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .resource-icon i {
+            color: var(--primary-900);
+            font-size: 1.5rem;
+        }
+        
+        .problem-solving-framework {
+            background: var(--neutral-900);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 3rem 0;
+        }
+        
+        .framework-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-marker {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        
+        .student-testimonial {
+            background: linear-gradient(135deg, var(--primary-100), var(--white));
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-500);
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            margin-top: 1rem;
+            color: var(--neutral-700);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="text-gradient">Deepak Pradhan</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="teaching.html" class="nav-link active">Teaching</a></li>
+                <li><a href="animations.html" class="nav-link">Animations</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Teaching Hero Section -->
+    <section class="hero teaching-hero">
+        <div class="hero-content" data-scroll>
+            <span class="hero-tagline">
+                <i class="fas fa-chalkboard-teacher"></i> Physics Education Reimagined
+            </span>
+            <h1>Teaching <span class="text-gradient">Methodology</span></h1>
+            <p class="hero-subtitle">
+                Moving beyond formulas to cultivate <strong>intuitive understanding</strong> and 
+                <strong>critical thinking</strong> in Physics. A structured approach developed 
+                through years of teaching and at IIT Madras.
+            </p>
+            <div class="hero-buttons">
+                <a href="#experience" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i> Teaching Experience
+                </a>
+                <a href="#approach" class="btn btn-secondary">
+                    <i class="fas fa-brain"></i> My Pedagogical Approach
+                </a>
+            </div>
+        </div>
+        
+        <!-- Teaching elements in background -->
+        <div class="teaching-elements">
+            <div class="element equation">F = ma</div>
+            <div class="element equation">E = mc²</div>
+            <div class="element diagram"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <!-- Experience Section -->
+        <section class="section" id="experience">
+            <div class="section-title" data-scroll>
+                <h2>Teaching <span class="text-gradient">Experience</span></h2>
+                <p>From elite institutes to individual mentorship</p>
+            </div>
+            
+            <div class="experience-timeline">
+                <div class="experience-card card" data-scroll>
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <i class="fas fa-university fa-3x"></i>
+                        </div>
+                        <div class="experience-details">
+                            <h3>Physics Faculty</h3>
+                            <div class="experience-org">
+                                <strong>  Chennai</strong>
+                            </div>
+                            <div class="experience-period">
+                                <span class="period">2024 - Present</span>
+                                <span class="badge badge-primary">Current Position</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-content">
+                        <p>
+                            Teaching advanced Physics to students preparing for <strong>JEE/NEET</strong> 
+                            with a focus on conceptual clarity and problem-solving strategies.
+                        </p>
+                        
+                        <div class="teaching-focus">
+                            <h4><i class="fas fa-bullseye highlight"></i> Primary Focus Areas:</h4>
+                            <div class="focus-grid">
+                                <div class="focus-item">
+                                    <div class="focus-icon">
+                                        <i class="fas fa-cogs"></i>
+                                    </div>
+                                    <div class="focus-content">
+                                        <h5>Classical Mechanics</h5>
+                                        <p>From Newton's laws to Lagrangian dynamics</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="focus-item">
+                                    <div class="focus-icon">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div class="focus-content">
+                                        <h5>Electromagnetism</h5>
+                                        <p>Maxwell's equations to circuit analysis</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="focus-item">
+                                    <div class="focus-icon">
+                                        <i class="fas fa-atom"></i>
+                                    </div>
+                                    <div class="focus-content">
+                                        <h5>Modern Physics</h5>
+                                        <p>Quantum mechanics and relativity foundations</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="teaching-responsibilities">
+                            <h4><i class="fas fa-tasks highlight"></i> Key Responsibilities:</h4>
+                            <ul>
+                                <li>Developing and delivering comprehensive physics curriculum for JEE/NEET aspirants</li>
+                                <li>Creating visual explanations and animations for complex concepts</li>
+                                <li>Conducting doubt-clearing sessions and personalized mentoring</li>
+                                <li>Designing practice problems and mock tests with detailed solutions</li>
+                                <li>Tracking student progress and adapting teaching methods accordingly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Previous experience section can be added here -->
+                <div class="experience-card card" data-scroll>
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <i class="fas fa-user-graduate fa-3x"></i>
+                        </div>
+                        <div class="experience-details">
+                            <h3>Teaching Assistant & Peer Mentor</h3>
+                            <div class="experience-org">
+                                <strong>IIT Madras & BJB College</strong>
+                            </div>
+                            <div class="experience-period">
+                                <span class="period">2019 - 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-content">
+                        <p>
+                            During my academic journey, I served as a teaching assistant and peer mentor, 
+                            helping students grasp fundamental physics concepts through innovative methods.
+                        </p>
+                        
+                        <div class="teaching-achievements">
+                            <h4><i class="fas fa-trophy highlight"></i> Teaching Achievements:</h4>
+                            <div class="achievement-grid">
+                                <div class="achievement">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Improved student comprehension by 40% through visual teaching methods</span>
+                                </div>
+                                <div class="achievement">
+                                    <i class="fas fa-users"></i>
+                                    <span>Mentored 50+ students in physics problem-solving techniques</span>
+                                </div>
+                                <div class="achievement">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Developed unique mnemonic devices for physics formulas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pedagogical Approach -->
+        <section class="section" id="approach">
+            <div class="section-title" data-scroll>
+                <h2>My Pedagogical <span class="text-gradient">Approach</span></h2>
+                <p>Intuition before equations, understanding before memorization</p>
+            </div>
+            
+            <div class="pedagogy-diagram" data-scroll>
+                <h3 class="text-center mb-3"><i class="fas fa-sitemap"></i> The 3-I Framework</h3>
+                <div class="diagram-flow">
+                    <div class="flow-step">
+                        <div class="flow-step-number">1</div>
+                        <h4>Intuition Building</h4>
+                        <p>
+                            Start with physical understanding before introducing equations. 
+                            Use analogies, thought experiments, and visualizations.
+                        </p>
+                        <div class="flow-example">
+                            <strong>Example:</strong> Understanding inertia through everyday experiences
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-step-number">2</div>
+                        <h4>In-depth Analysis</h4>
+                        <p>
+                            Break down complex problems into manageable components. 
+                            Focus on the "why" behind each step.
+                        </p>
+                        <div class="flow-example">
+                            <strong>Example:</strong> Free body diagrams before applying Newton's laws
+                        </div>
+                    </div>
+                    
+                    <div class="flow-step">
+                        <div class="flow-step-number">3</div>
+                        <h4>Integration</h4>
+                        <p>
+                            Connect concepts across different topics. Show how physics 
+                            principles form a cohesive framework.
+                        </p>
+                        <div class="flow-example">
+                            <strong>Example:</strong> Relating energy conservation across mechanics and thermodynamics
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-2 gap-3">
+                <div class="teaching-principle card" data-scroll>
+                    <div class="principle-icon">
+                        <i class="fas fa-eye fa-2x"></i>
+                    </div>
+                    <h3>Visual First Learning</h3>
+                    <p>
+                        Before introducing equations like <em>F = ma</em>, I create visual representations 
+                        that make the physical meaning transparent. Animations, diagrams, and 
+                        interactive simulations form the foundation of understanding.
+                    </p>
+                    <a href="animations.html" class="btn btn-secondary mt-2">
+                        <i class="fas fa-film"></i> See Animations
+                    </a>
+                </div>
+                
+                <div class="teaching-principle card" data-scroll>
+                    <div class="principle-icon">
+                        <i class="fas fa-puzzle-piece fa-2x"></i>
+                    </div>
+                    <h3>Problem-Solving Framework</h3>
+                    <p>
+                        Every physics problem follows a logical structure. I teach students 
+                        systematic approaches: identify knowns/unknowns, choose appropriate 
+                        principles, execute calculations, and verify results.
+                    </p>
+                    <div class="principle-quote">
+                        "Give a student a solved problem, they'll pass one exam. Teach them how to approach any problem, they'll master physics."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Resources -->
+        <section class="section" id="resources">
+            <div class="section-title" data-scroll>
+                <h2>Teaching <span class="text-gradient">Resources</span></h2>
+                <p>Tools and materials that enhance learning</p>
+            </div>
+            
+            <div class="teaching-resources">
+                <div class="teaching-resource" data-scroll>
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Manim Animations</h3>
+                        <p>
+                            Custom-created animations that visualize complex physics concepts. 
+                            Each animation follows the "show, don't just tell" principle.
+                        </p>
+                        <div class="resource-stats">
+                            <span class="stat"><i class="fas fa-play-circle"></i> 50+ animations</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 10+ hours of content</span>
+                            <span class="stat"><i class="fas fa-graduation-cap"></i> Covers JEE/NEET syllabus</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teaching-resource" data-scroll>
+                    <div class="resource-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Conceptual Worksheets</h3>
+                        <p>
+                            Carefully designed worksheets that focus on understanding rather than 
+                            rote calculation. Each worksheet builds from basic concepts to 
+                            advanced applications.
+                        </p>
+                        <div class="resource-stats">
+                            <span class="stat"><i class="fas fa-file-alt"></i> Topic-wise organization</span>
+                            <span class="stat"><i class="fas fa-chart-bar"></i> Progressive difficulty</span>
+                            <span class="stat"><i class="fas fa-lightbulb"></i> Hints and solutions</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teaching-resource" data-scroll>
+                    <div class="resource-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="resource-content">
+                        <h3>Interactive Simulations</h3>
+                        <p>
+                            Python-based simulations that allow students to manipulate parameters 
+                            and observe real-time effects. Bridges theory with computational exploration.
+                        </p>
+                        <div class="resource-stats">
+                            <span class="stat"><i class="fas fa-code"></i> Python/Mathematica</span>
+                            <span class="stat"><i class="fas fa-sliders-h"></i> Adjustable parameters</span>
+                            <span class="stat"><i class="fas fa-chart-line"></i> Real-time visualization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem-Solving Framework -->
+        <section class="problem-solving-framework" data-scroll>
+            <h2 class="text-center mb-4"><i class="fas fa-cogs"></i> The 5-Step Problem-Solving Method</h2>
+            
+            <div class="framework-steps">
+                <div class="framework-step">
+                    <div class="step-marker">1</div>
+                    <div>
+                        <h4>Understand the Problem</h4>
+                        <p>Read carefully, identify what's given and what's required. Draw diagrams when applicable.</p>
+                    </div>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-marker">2</div>
+                    <div>
+                        <h4>Identify Relevant Concepts</h4>
+                        <p>Which physics principles apply? Conservation laws? Kinematic equations? Force analysis?</p>
+                    </div>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-marker">3</div>
+                    <div>
+                        <h4>Plan the Solution</h4>
+                        <p>Break into smaller steps. What equations will you use? In what order?</p>
+                    </div>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-marker">4</div>
+                    <div>
+                        <h4>Execute Calculations</h4>
+                        <p>Carry out the mathematical steps carefully. Show all work for partial credit.</p>
+                    </div>
+                </div>
+                
+                <div class="framework-step">
+                    <div class="step-marker">5</div>
+                    <div>
+                        <h4>Verify & Reflect</h4>
+                        <p>Does the answer make sense physically? Check units. Consider alternative approaches.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-light">
+                    This systematic approach reduces errors by 60% and improves problem-solving speed by 40%.
+                </p>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section" id="testimonials">
+            <div class="section-title" data-scroll>
+                <h2>Student <span class="text-gradient">Testimonials</span></h2>
+                <p>Feedback from those who have experienced the methodology</p>
+            </div>
+            
+            <div class="grid grid-2 gap-3">
+                <div class="student-testimonial" data-scroll>
+                    <p>
+                        "I struggled with rotational motion for months until Deepak sir explained it 
+                        with simple spinning top analogies and animations. Suddenly, everything clicked. 
+                        His visual approach made abstract concepts tangible."
+                    </p>
+                    <div class="testimonial-author">
+                        — JEE Aspirant, 2023 Batch
+                    </div>
+                </div>
+                
+                <div class="student-testimonial" data-scroll>
+                    <p>
+                        "The problem-solving framework he taught us is invaluable. I no longer panic 
+                        when I see a complex physics problem. I just follow the steps systematically, 
+                        and the solution emerges naturally."
+                    </p>
+                    <div class="testimonial-author">
+                        — NEET Aspirant, 2024 Batch
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Philosophy -->
+        <section class="section" id="philosophy">
+            <div class="philosophy-statement card" data-scroll>
+                <div class="section-title">
+                    <h2>Core Teaching <span class="text-gradient">Philosophy</span></h2>
+                </div>
+                
+                <div class="philosophy-content">
+                    <p class="lead">
+                        Physics isn't about memorizing equations—it's about developing a new way of seeing the world.
+                    </p>
+                    
+                    <div class="philosophy-points">
+                        <div class="philosophy-point">
+                            <i class="fas fa-check-circle highlight"></i>
+                            <span><strong>Concept Over Calculation:</strong> Understanding why formulas work is more important than memorizing them.</span>
+                        </div>
+                        
+                        <div class="philosophy-point">
+                            <i class="fas fa-check-circle highlight"></i>
+                            <span><strong>Visual Before Verbal:</strong> A well-designed animation can convey what paragraphs of text cannot.</span>
+                        </div>
+                        
+                        <div class="philosophy-point">
+                            <i class="fas fa-check-circle highlight"></i>
+                            <span><strong>Connection Over Isolation:</strong> Show how different physics topics connect to form a coherent whole.</span>
+                        </div>
+                        
+                        <div class="philosophy-point">
+                            <i class="fas fa-check-circle highlight"></i>
+                            <span><strong>Confidence Through Competence:</strong> Build problem-solving skills that create genuine confidence, not just exam performance.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-quote mt-4">
+                        <i class="fas fa-quote-left fa-2x opacity-50"></i>
+                        <p class="quote-text">
+                            The goal isn't just to help students pass exams—it's to equip them with 
+                            a physics intuition that will serve them throughout their scientific careers.
+                        </p>
+                        <div class="quote-author">
+                            — Deepak Pradhan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section" id="cta" data-scroll>
+            <div class="cta-card card">
+                <div class="cta-content">
+                    <h2 class="text-gradient">Experience This Teaching Approach</h2>
+                    <p>
+                        Whether you're a student seeking better understanding, a parent looking for 
+                        effective tutoring, or an educator interested in innovative methods—let's connect.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fas fa-comments"></i> Discuss Learning Needs
+                        </a>
+                        <a href="animations.html" class="btn btn-secondary">
+                            <i class="fas fa-play-circle"></i> View Teaching Animations
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="text-gradient">Deepak Pradhan</h3>
+                    <p>Physics Educator & Visual Explainer</p>
+                    <p class="footer-subtitle">
+                        Making physics intuitive, accessible, and beautiful through innovative teaching.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Teaching Expertise</h4>
+                    <ul class="footer-links">
+                        <li><a href="#experience">Allen Career Institute</a></li>
+                        <li><a href="#approach">Pedagogical Methodology</a></li>
+                        <li><a href="#resources">Teaching Resources</a></li>
+                        <li><a href="#philosophy">Educational Philosophy</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact for Tutoring</a></li>
+                        <li><a href="mailto:your.email@example.com">Email Consultation</a></li>
+                        <li><a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
+                        <li><a href="animations.html">Educational Animations</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Teaching Focus Areas</h4>
+                    <div class="focus-areas">
+                        <span class="focus-tag">JEE Physics</span>
+                        <span class="focus-tag">NEET Physics</span>
+                        <span class="focus-tag">Classical Mechanics</span>
+                        <span class="focus-tag">Electromagnetism</span>
+                        <span class="focus-tag">Modern Physics</span>
+                        <span class="focus-tag">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    © 2025 Deepak Pradhan. All rights reserved. | 
+                    JEE Physics Faculty, | M.Sc. IIT Madras
+                </p>
+                <p class="footer-quote">
+                    <i class="fas fa-quote-left"></i> 
+                    Education is the kindling of a flame, not the filling of a vessel.
+                    <i class="fas fa-quote-right"></i> — Socrates
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactive Effects -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight * 0.8);
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('visible');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        // Initial check on page load
+        handleScrollAnimation();
+        window.addEventListener('scroll', handleScrollAnimation);
+
+        // Add active class to current nav link
+        const currentPage = window.location.pathname.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else if (currentPage === '' && link.getAttribute('href') === 'index.html') {
+                link.classList.add('active');
+            }
+        });
+
+        // Animated physics equations in hero background
+        document.addEventListener('DOMContentLoaded', function() {
+            const teachingElements = document.querySelector('.teaching-elements');
+            if (teachingElements) {
+                // Add floating equations
+                for (let i = 0; i < 8; i++) {
+                    const equation = document.createElement('div');
+                    equation.className = 'floating-equation';
+                    equation.textContent = getRandomEquation();
+                    equation.style.left = `${Math.random() * 100}%`;
+                    equation.style.top = `${Math.random() * 100}%`;
+                    equation.style.animationDelay = `${Math.random() * 5}s`;
+                    teachingElements.appendChild(equation);
+                }
+            }
+        });
+
+        function getRandomEquation() {
+            const equations = [
+                'F = ma', 'E = mc²', 'p = mv', 'W = F·d',
+                'a = Δv/Δt', 'F = kx', 'P = W/t', 'V = IR',
+                'τ = rF sinθ', 'ω = Δθ/Δt', 'λ = v/f', 'n = c/v'
+            ];
+            return equations[Math.floor(Math.random() * equations.length)];
+        }
+    </script>
+</body>
+</html>

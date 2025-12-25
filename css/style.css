@@ -2155,4 +2155,13 @@ p {
     0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.hero h1,
+.hero-title,
+.hero h1:not(.text-gradient) {
+  color: #f8fafc; /* strong readable white */
+  text-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
 

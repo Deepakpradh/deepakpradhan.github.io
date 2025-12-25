@@ -2143,3 +2143,16 @@ p {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+
+
+
+
+.hero-title {
+  color: #f8fafc;
+  font-weight: 700;
+  text-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+

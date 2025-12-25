@@ -1012,192 +1012,254 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+   <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             }
         });
+    });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+    // Add active class to current nav link
+    const currentPage = window.location.pathname.split('/').pop();
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        } else if (currentPage === '' && link.getAttribute('href') === 'index.html') {
+            link.classList.add('active');
+        }
+    });
+
+    // Form Validation and Submission
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        
+        // Your Google Apps Script URL - PASTE IT HERE
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRltWbiCADa2v8FG071PeDCHjRH1eF_mKBR8gnsmfp1_SeF4Z4ZuSUxiMvrHABS138kQ/exec";
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                // Clear previous errors
+                clearErrors();
+                
+                // Validate form
+                if (validateForm()) {
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Get form data
+                        const formData = {
+                            name: document.getElementById('name').value.trim(),
+                            email: document.getElementById('email').value.trim(),
+                            subject: document.getElementById('subject').value,
+                            message: document.getElementById('message').value.trim(),
+                            page: window.location.href,
+                            timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+                        };
+                        
+                        // Send to Google Apps Script
+                        await submitToGoogleAppsScript(formData);
+                        
+                        // Show success message
+                        showFormStatus('success', 
+                            '✅ Message sent successfully!<br>' +
+                            'I\'ll respond within 24-48 hours.<br>' +
+                            '<small>You should receive a confirmation email shortly.</small>'
+                        );
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Scroll to status message
+                        formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Hide success message after 10 seconds
+                        setTimeout(() => {
+                            formStatus.style.display = 'none';
+                        }, 10000);
+                        
+                    } catch (error) {
+                        console.error('Form submission error:', error);
+                        
+                        // Create mailto fallback
+                        const name = document.getElementById('name').value;
+                        const email = document.getElementById('email').value;
+                        const subject = document.getElementById('subject').value;
+                        const message = document.getElementById('message').value;
+                        
+                        const mailtoBody = `Dear Deepak,%0D%0A%0D%0A${encodeURIComponent(message)}%0D%0A%0D%0AName: ${encodeURIComponent(name)}%0D%0AEmail: ${encodeURIComponent(email)}`;
+                        const mailtoLink = `mailto:deepakphysics1406@gmail.com?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+                        
+                        // Show error with fallback option
+                        showFormStatus('error', 
+                            '⚠️ There was an error sending your message.<br><br>' +
+                            '<strong>Alternative:</strong> ' +
+                            '<a href="' + mailtoLink + '" style="color: #3b82f6; text-decoration: underline; font-weight: 600;">' +
+                            'Click here to send via email directly</a>'
+                        );
+                        
+                    } finally {
+                        // Reset button state
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                        submitBtn.disabled = false;
+                    }
                 }
             });
-        });
-
-        // Add active class to current nav link
-        const currentPage = window.location.pathname.split('/').pop();
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            } else if (currentPage === '' && link.getAttribute('href') === 'index.html') {
-                link.classList.add('active');
-            }
-        });
-
-        // Form Validation and Submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const formStatus = document.getElementById('formStatus');
             
-            if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    // Clear previous errors
-                    clearErrors();
-                    
-                    // Validate form
-                    if (validateForm()) {
-                        // Show loading state
-                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                        submitBtn.disabled = true;
-                        
-                        try {
-                            // For demonstration, simulate API call
-                            // In production, replace with actual EmailJS or backend API call
-                            await simulateFormSubmission();
-                            
-                            // Show success message
-                            showFormStatus('success', 'Message sent successfully! I\'ll respond within 24-48 hours.');
-                            
-                            // Reset form
-                            contactForm.reset();
-                            
-                            // Scroll to status message
-                            formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            
-                        } catch (error) {
-                            // Show error message
-                            showFormStatus('error', 'There was an error sending your message. Please try again or email me directly.');
-                        } finally {
-                            // Reset button state
-                            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-                            submitBtn.disabled = false;
-                        }
-                    }
+            // Real-time validation
+            const inputs = contactForm.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
                 });
                 
-                // Real-time validation
-                const inputs = contactForm.querySelectorAll('input, textarea, select');
-                inputs.forEach(input => {
-                    input.addEventListener('blur', function() {
-                        validateField(this);
-                    });
-                    
-                    input.addEventListener('input', function() {
-                        clearFieldError(this);
-                    });
+                input.addEventListener('input', function() {
+                    clearFieldError(this);
                 });
-            }
+            });
             
-            // Form validation functions
-            function validateForm() {
-                let isValid = true;
-                const requiredFields = contactForm.querySelectorAll('[required]');
-                
-                requiredFields.forEach(field => {
-                    if (!validateField(field)) {
-                        isValid = false;
-                    }
-                });
-                
-                return isValid;
-            }
-            
-            function validateField(field) {
-                const value = field.value.trim();
-                const errorElement = document.getElementById(field.id + 'Error');
-                
-                if (field.required && !value) {
-                    showFieldError(field, 'This field is required');
-                    return false;
-                }
-                
-                if (field.type === 'email' && value) {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(value)) {
-                        showFieldError(field, 'Please enter a valid email address');
-                        return false;
-                    }
-                }
-                
-                if (field.id === 'message' && value.length < 10) {
-                    showFieldError(field, 'Please provide more details (at least 10 characters)');
-                    return false;
-                }
-                
-                return true;
-            }
-            
-            function showFieldError(field, message) {
-                const errorElement = document.getElementById(field.id + 'Error');
-                if (errorElement) {
-                    errorElement.textContent = message;
-                    errorElement.style.display = 'block';
-                    field.style.borderColor = '#ef4444';
-                }
-            }
-            
-            function clearFieldError(field) {
-                const errorElement = document.getElementById(field.id + 'Error');
-                if (errorElement) {
-                    errorElement.textContent = '';
-                    errorElement.style.display = 'none';
-                    field.style.borderColor = '';
-                }
-            }
-            
-            function clearErrors() {
-                const errors = document.querySelectorAll('.form-error');
-                errors.forEach(error => {
-                    error.textContent = '';
-                    error.style.display = 'none';
-                });
-                
-                const inputs = contactForm.querySelectorAll('input, textarea, select');
-                inputs.forEach(input => {
-                    input.style.borderColor = '';
-                });
-                
-                formStatus.className = 'form-status';
+            // Form reset handler
+            contactForm.querySelector('button[type="reset"]').addEventListener('click', function() {
+                clearErrors();
                 formStatus.style.display = 'none';
+            });
+        }
+        
+        // Google Apps Script submission function
+        async function submitToGoogleAppsScript(formData) {
+            // Add a small delay to show loading state
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Using no-cors mode for cross-origin requests
+            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Important for Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            // With no-cors mode, we can't read the response
+            // But the request was sent successfully
+            return { success: true };
+        }
+        
+        // Form validation functions
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = contactForm.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function validateField(field) {
+            const value = field.value.trim();
+            const errorElement = document.getElementById(field.id + 'Error');
+            
+            if (field.required && !value) {
+                showFieldError(field, 'This field is required');
+                return false;
             }
             
-            function showFormStatus(type, message) {
-                formStatus.textContent = message;
-                formStatus.className = `form-status ${type}`;
-                formStatus.style.display = 'block';
+            if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFieldError(field, 'Please enter a valid email address');
+                    return false;
+                }
             }
             
-            // Simulate form submission (replace with actual in production)
-            function simulateFormSubmission() {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        // Simulate network delay
-                        resolve();
-                    }, 1500);
-                });
+            if (field.id === 'message' && value.length < 10) {
+                showFieldError(field, 'Please provide more details (at least 10 characters)');
+                return false;
             }
-        });
-    </script>
+            
+            return true;
+        }
+        
+        function showFieldError(field, message) {
+            const errorElement = document.getElementById(field.id + 'Error');
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                field.style.borderColor = '#ef4444';
+                field.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+            }
+        }
+        
+        function clearFieldError(field) {
+            const errorElement = document.getElementById(field.id + 'Error');
+            if (errorElement) {
+                errorElement.textContent = '';
+                errorElement.style.display = 'none';
+                field.style.borderColor = '';
+                field.style.boxShadow = '';
+            }
+        }
+        
+        function clearErrors() {
+            const errors = document.querySelectorAll('.form-error');
+            errors.forEach(error => {
+                error.textContent = '';
+                error.style.display = 'none';
+            });
+            
+            const inputs = contactForm.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            });
+            
+            formStatus.className = 'form-status';
+            formStatus.style.display = 'none';
+        }
+        
+        function showFormStatus(type, message) {
+            formStatus.innerHTML = message;
+            formStatus.className = `form-status ${type}`;
+            formStatus.style.display = 'block';
+            
+            // Scroll to status
+            setTimeout(() => {
+                formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    });
+</script>
 </body>
 </html>

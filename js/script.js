@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+
+    // ===== MOBILE MENU TOGGLE =====
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinksMenu = document.querySelector('.nav-links');
+    
+    mobileMenuBtn?.addEventListener('click', () => {
+        navLinksMenu.style.display = navLinksMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+    
     // ===== SCROLL REVEAL ANIMATION =====
     const scrollElements = document.querySelectorAll('[data-scroll]');
     const elementInView = (el) => {
@@ -127,19 +136,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ===== VIDEO.JS ENHANCEMENTS =====
-    document.addEventListener('DOMContentLoaded', function() {
-        const players = document.querySelectorAll('.video-js');
-        players.forEach(player => {
-            // Add custom controls behavior
-            player.addEventListener('play', function() {
-                const overlay = this.parentElement.querySelector('.video-overlay');
-                if (overlay) overlay.style.display = 'none';
-            });
-            
-            player.addEventListener('pause', function() {
-                const overlay = this.parentElement.querySelector('.video-overlay');
-                if (overlay) overlay.style.display = 'flex';
-            });
+    const players = document.querySelectorAll('.video-js');
+    players.forEach(player => {
+        // Add custom controls behavior
+        player.addEventListener('play', function() {
+            const overlay = this.parentElement.querySelector('.video-overlay');
+            if (overlay) overlay.style.display = 'none';
+        });
+        
+        player.addEventListener('pause', function() {
+            const overlay = this.parentElement.querySelector('.video-overlay');
+            if (overlay) overlay.style.display = 'flex';
         });
     });
     
